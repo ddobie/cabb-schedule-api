@@ -1,6 +1,6 @@
 # A frequency setup.
-from zoom import zoom
-import errors
+from .zoom import zoom
+from . import errors
 
 class frequency_setup:
     def __init__(self, parent):
@@ -9,7 +9,7 @@ class frequency_setup:
         self.__setupDetails = { 'continuumCentre': 2100, 'channelBandwidth': 1,
                                 'zooms': [] }
         # Assign all the zooms.
-        for i in xrange(0, 16):
+        for i in range(0, 16):
             self.__setupDetails['zooms'].append(zoom(self))
 
     def __frequencyToBand(self, cfreq=None):
@@ -48,7 +48,7 @@ class frequency_setup:
     def getNZooms(self):
         # Return the number of zoom channels currently in use.
         tw = 0
-        for i in xrange(0, len(self.__setupDetails['zooms'])):
+        for i in range(0, len(self.__setupDetails['zooms'])):
             if (self.__setupDetails['zooms'][i].isEnabled):
                 tw += 1
         return tw

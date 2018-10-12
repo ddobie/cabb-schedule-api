@@ -1,6 +1,6 @@
 # A schedule is a collection of scans, so the schedule class
 # doesn't do much. But we do keep track of certain constants.
-from scan import scan
+from .scan import scan
 import re
 
 class schedule:
@@ -182,7 +182,7 @@ class schedule:
         # passed in as the refScan. So we first find which scans match.
         # We match only on source name, position and frequency configuration.
         matchedScans = []
-        for i in xrange(0, len(self.scans)):
+        for i in range(0, len(self.scans)):
             if (self.scans[i].getSource() == refScan.getSource() and
                 self.scans[i].getRightAscension() == refScan.getRightAscension() and
                 self.scans[i].getDeclination() == refScan.getDeclination() and
@@ -204,7 +204,7 @@ class schedule:
         # We place the calibrator scan before each of the matched scans.
         # Or afterwards if we don't want to get to the calibrator first.
         nscan = None
-        for i in xrange(0, len(matchedScans)):
+        for i in range(0, len(matchedScans)):
             # Remember, the index of the matched scan will go up by one every time
             # we put a new scan in before it.
             ni = i + matchedScans[i]
@@ -233,7 +233,7 @@ class schedule:
     def getScanById(self, id=None):
         # Return the scan specified.
         if id is not None:
-            for i in xrange(0, len(self.scans)):
+            for i in range(0, len(self.scans)):
                 if self.scans[i].getId() == id:
                     return self.scans[i]
         return None
@@ -255,7 +255,7 @@ class schedule:
             return None
         # Try to find the scans.
         j = 0
-        for i in xrange(0, len(ids)):
+        for i in range(0, len(ids)):
             cscan = self.getScanById(ids[i])
             if cscan is not None:
                 copts = self.scanToOptions(cscan)
@@ -350,7 +350,7 @@ class schedule:
         # Check we have all our calibrator scans.
         self.checkCalibrators()
         outputStrings = []
-        for i in xrange(0, len(self.scans)):
+        for i in range(0, len(self.scans)):
             # Every scan starts the same way.
             outputStrings.append("$SCAN*V5")
             for h in self.__scanHandlers:
@@ -392,7 +392,7 @@ class schedule:
             self.clear()
             stringLines = [ s.strip() for s in string.splitlines() ]
             if len(stringLines) > 0:
-                for i in xrange(0, len(stringLines)):
+                for i in range(0, len(stringLines)):
                     line = stringLines[i]
                     if line == "$SCAN*V5":
                         # A new scan.

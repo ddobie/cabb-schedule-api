@@ -1,5 +1,5 @@
 # A zoom band.
-import errors
+from . import errors
 
 class zoom:
     def __init__(self, parent):
