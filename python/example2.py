@@ -44,8 +44,8 @@ currentArray = cabb.monica_information.getArray()
 # And pass this as the arggument to the calibrator selector.
 bestCal = calList.getBestCalibrator(currentArray)
 # This should choose 2353-686.
-print "Calibrator chosen: %s, %.1f degrees away" % (bestCal['calibrator'].getName(),
-                                                    bestCal['distance'])
+print("Calibrator chosen: %s, %.1f degrees away" % (bestCal['calibrator'].getName(),
+                                                    bestCal['distance']))
 
 # We add this calibrator to the schedule, attaching it to the scan it
 # will be the calibrator for. We'll ask to observe the calibrator for 2
@@ -56,7 +56,7 @@ calScan = schedule.addCalibrator(bestCal['calibrator'], scan1, { 'scanLength': "
 # of these two scans. Remembering that the library will take care of
 # associating a calibrator to each source, we only need to copy the source
 # scan.
-for i in xrange(0, 2):
+for i in range(0, 2):
     schedule.copyScans([ scan1.getId() ])
 
 # Tell the library that we won't be looping, so there will be a calibrator scan at the

@@ -10,7 +10,7 @@ scan3 = testSchedule.addScan({ 'source': "0823-500", 'rightAscension': "08:25:26
 try:
     scan2.setSource("0537-441").setRightAscension("05:38:50.362").setEpoch("J2000")
 except cabb.errors.ScanError as e:
-    print "Caught exception: ", e.value
+    print("Caught exception: ", e.value)
 calList = scan3.findCalibrator()
 bestCal = calList.getBestCalibrator()
 #for i in xrange(0, calList.numCalibrators()):
@@ -19,19 +19,19 @@ if bestCal is not None:
     calObj = bestCal['calibrator']
     fds = calObj.getFluxDensities()
     fdStrings = []
-    for j in xrange(0, len(fds)):
+    for j in range(0, len(fds)):
         fdStrings.append("%d MHz = %.3f Jy" % (fds[j]['frequency'], fds[j]['fluxDensity']))
-    print " calibrator %s, (%s / %s) [ %s ] { %.2f deg }" % (
+    print(" calibrator %s, (%s / %s) [ %s ] { %.2f deg }" % (
         calObj.getName(), calObj.getRightAscension(), calObj.getDeclination(),
-        ", ".join(fdStrings), bestCal['distance'])
+        ", ".join(fdStrings), bestCal['distance']))
 
 testSchedule.write(name="test.sch")
 
 # Read an existing schedule.
 nscans = testSchedule.read("c2914_follow_cal.sch")
-print "Read in %d scans" % nscans
+print("Read in %d scans" % nscans)
 # Output some things.
 a = testSchedule.getScan(18)
-print a.getSource()
-print a.IF1().getFreq()
+print(a.getSource())
+print(a.IF1().getFreq())
 
